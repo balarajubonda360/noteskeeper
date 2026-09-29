@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Inter", sans-serif;
+  color: #FDF2F0;
+  background: #1B3A3C;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; background: #1B3A3C; }
+body { min-width: 320px; min-height: 100vh; margin: 0; background: #1B3A3C; color: #FDF2F0; }
+button, input { font: inherit; }
+button:focus-visible, a:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: 2px solid #2faf9a; outline-offset: 3px; }
+::selection { color: #1B3A3C; background: #2faf9a; }
+
+@layer utilities {
+  .font-display { font-family: "Poppins", sans-serif; }
+  .font-body { font-family: "Inter", sans-serif; }
+  .glass { border: 1px solid rgba(255,255,255,.1); background: rgba(27,58,60,.78); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+  .gradient-text { background: linear-gradient(110deg, #2faf9a 0%, #ff9f86 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .glow-violet { box-shadow: 0 0 32px rgba(47,175,154,.26); }
+}
+
+* { scrollbar-color: rgba(47,175,154,.6) #1B3A3C; scrollbar-width: thin; }
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-track { background: #1B3A3C; }
+*::-webkit-scrollbar-thumb { border: 2px solid #1B3A3C; border-radius: 999px; background: rgba(47,175,154,.65); }
+*::-webkit-scrollbar-thumb:hover { background: rgba(47,175,154,.75); }
+
+/* Keep muted copy readable against the dark glass surfaces. */
+.text-white\/30, .text-white\/35, .text-white\/40, .text-white\/45, .text-white\/50, .text-white\/55 { color: rgba(255,255,255,.68) !important; }
+.text-white\/60 { color: rgba(255,255,255,.74) !important; }
+.text-violet\/80 { color: #2faf9a !important; }

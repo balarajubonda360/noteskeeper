@@ -1,0 +1,81 @@
+.skeleton-shimmer {
+  background: linear-gradient(100deg, rgba(255,255,255,.045) 25%, rgba(255,255,255,.13) 45%, rgba(255,255,255,.045) 65%);
+  background-size: 220% 100%;
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+
+.animated-gradient-border { position: relative; isolation: isolate; }
+.animated-gradient-border::before {
+  position: absolute;
+  z-index: -1;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #2faf9a, #ff9f86, #2faf9a);
+  content: "";
+  opacity: 0;
+  transition: opacity 180ms ease;
+  animation: gradientSpin 4s linear infinite;
+}
+.animated-gradient-border:focus-within::before { opacity: 1; }
+
+.ripple-effect {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.42);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 560ms ease-out forwards;
+}
+
+.draw-stroke path {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  animation: drawStroke 1.45s cubic-bezier(.65,0,.35,1) forwards;
+}
+.draw-stroke path:nth-child(2) { animation-delay: 180ms; }
+.draw-stroke path:nth-child(3) { animation-delay: 360ms; }
+.logo-drop-fill { opacity: 0; animation: inkFill 500ms ease-out 1.5s forwards; }
+
+.aurora-blob { will-change: transform; }
+.aurora-one { animation: float 20s ease-in-out infinite; }
+.aurora-two { animation: float 26s ease-in-out -7s infinite reverse; }
+.aurora-three { animation: float 32s ease-in-out -13s infinite; }
+.aurora-paused .aurora-blob { animation-play-state: paused; }
+.pulse-glow { animation: pulseGlow 2.8s ease-in-out infinite; }
+.button-gradient { background-size: 180% 100%; background-position: 0% 50%; transition: background-position 350ms ease, filter 200ms ease; }
+.button-gradient:hover { background-position: 100% 50%; }
+.note-spotlight { isolation: isolate; }
+.note-spotlight::before { position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(47,175,154,.18), transparent 72%); content: ""; opacity: 0; transition: opacity 180ms ease; pointer-events: none; }
+.note-spotlight:hover::before { opacity: 1; }
+.toast-enter { animation: toastIn 260ms cubic-bezier(.2,.8,.2,1) both; }
+.toast-glass { border: 1px solid rgba(255,255,255,.14) !important; background: rgba(27,58,60,.92) !important; color: rgba(255,255,255,.96) !important; -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); box-shadow: 0 16px 48px rgba(0,0,0,.36); }
+.toast-success { border-left: 3px solid #2faf9a !important; }
+.toast-error { border-left: 3px solid #ff9f86 !important; }
+
+@keyframes shimmer { to { background-position: -220% 0; } }
+@keyframes gradientSpin { to { transform: rotate(360deg); } }
+@keyframes inkFill { to { opacity: 1; } }
+@keyframes toastIn { from { opacity: 0; transform: translate3d(24px,-8px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+@keyframes ripple { to { opacity: 0; transform: translate(-50%, -50%) scale(20); } }
+@keyframes drawStroke { to { stroke-dashoffset: 0; } }
+@keyframes float { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(24px,-28px,0) scale(1.08); } }
+@keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 16px rgba(47,175,154,.16), 0 0 0 rgba(47,175,154,0); } 50% { box-shadow: 0 0 26px rgba(47,175,154,.32), 0 0 16px rgba(47,175,154,.14); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .logo-drop-fill { opacity: 1; }
+  .draw-stroke path { stroke-dashoffset: 0; }
+  .note-spotlight::before { display: none; }
+  .aurora-blob { animation: none !important; }
+  .skeleton-shimmer { animation: none !important; background-position: 50% 0; }
+  .toast-enter { animation: reducedToastIn 250ms ease-out both; }
+  .ripple-effect { display: none; }
+}
+@keyframes reducedToastIn { from { opacity: 0; } to { opacity: 1; } }
