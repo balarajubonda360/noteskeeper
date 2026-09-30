@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 export const TOKEN_STORAGE_KEY = "inkvault_token";
 
 const api = axios.create({
-  baseURL: "https://noteskeeper-backend-j321.onrender.com",
+  baseURL: "https://noteskeeper-backend-j321.onrender.com/api",
   timeout: 15000,
   headers: { "Content-Type": "application/json" },
 });
