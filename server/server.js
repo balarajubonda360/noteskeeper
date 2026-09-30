@@ -12,7 +12,16 @@ const startServer = async () => {
   await connectDB();
   await seedQuotes();
   const port = process.env.PORT || 5000;
-  app.listen(port, "0.0.0.0");
+  const server = app.listen(port, "0.0.0.0", () => {
+    console.log(`API listening at http://localhost:${port}`);
+  });
+  server.on("error", (error) => {
+    console.error(`API failed to listen on port ${port}: ${error.message}`);
+    process.exitCode = 1;
+  });
 };
 
-startServer();
+startServer().catch((error) => {
+  console.error(`Server startup failed: ${error.message}`);
+  process.exitCode = 1;
+});
