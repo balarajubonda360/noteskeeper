@@ -22,15 +22,7 @@ const developmentOrigins = process.env.NODE_ENV === "production"
 const allowedOrigins = new Set([...configuredClientOrigins, ...developmentOrigins]);
 
 app.use(helmet());
-app.use(cors({
-  origin(origin, callback) {
-    if (!origin || allowedOrigins.has(origin)) return callback(null, true);
-    const error = new Error("This website is not allowed to access the InkVault API.");
-    error.statusCode = 403;
-    return callback(error);
-  },
-  credentials: true,
-}));
+app.use(cors());
 app.use(express.json());
 
 if (process.env.NODE_ENV === "development") {
